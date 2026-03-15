@@ -14,9 +14,22 @@
 </head>
 
 <body>
+    <!-- Mobile Header -->
+    <header class="mobile-header" id="mobile-header">
+        <div class="logo">
+            <div class="logo-symbol">♛</div>
+            <h1>MATTER <span style="font-weight: 300; opacity: 0.7;">SYSTEM</span></h1>
+        </div>
+        <button class="menu-toggle" id="mobile-menu-toggle">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </header>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <div class="app-container">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="logo">
                 <div class="logo-symbol">♛</div>
                 <h1>MATTER <span style="font-weight: 300; opacity: 0.7;">SYSTEM</span></h1>
@@ -339,7 +352,7 @@
                 </div>
 
                 <!-- Total Balance Output for legacy user request -->
-                <div class="economy-summary-cards" style="display:flex; gap:12px; margin-bottom:24px;">
+                <div class="economy-summary-cards" style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:24px;">
                     <div class="pocket-card" style="flex:1;">
                         <h4 style="font-size:0.85rem; color:var(--text-muted);">Total Balance</h4>
                         <div class="pocket-amount" id="economy-total-balance">Rp 0</div>
@@ -356,11 +369,11 @@
                 <div class="module-panel" style="margin-bottom: 24px;">
                     <h4>Input Sintesis </h4>
                     <p class="subtitle" style="margin-bottom:12px">Beban kognitif nol. Biarkan algoritma menghitung.</p>
-                    <div class="form-row">
+                    <div class="form-row" style="display:flex; flex-wrap:wrap; gap:12px;">
                         <input type="number" id="eco-total-amount" placeholder="Total Pemasukan (Rp)"
-                            style="flex:1; font-size: 1.2rem; padding: 12px;">
+                            style="flex:1; min-width: 200px; font-size: 1.2rem; padding: 12px;">
                         <button class="btn btn-primary" id="split-income-btn"
-                            style="padding: 12px 24px;">Alokasikan</button>
+                            style="padding: 12px 24px; white-space: nowrap;">Alokasikan</button>
                     </div>
                 </div>
 
@@ -393,29 +406,26 @@
 
                 <div class="module-panel" style="margin-top:24px;">
                     <h4>Input Transaksi Manual</h4>
-                    <div class="form-row" style="margin-top:12px">
-                        <input type="number" id="eco-amount" placeholder="Nominal (Rp)" style="flex:1;">
+                    <div class="form-row" style="margin-top:12px; display:flex; flex-wrap:wrap; gap:12px;">
+                        <input type="number" id="eco-amount" placeholder="Nominal (Rp)" style="flex:1; min-width: 150px;">
                         <select id="eco-type" style="width:120px;">
                             <option value="income">Masuk (+)</option>
                             <option value="expense">Keluar (-)</option>
                         </select>
-                        <div class="form-row">
-                            <select id="eco-allocation"
-                                style="flex:1; background: var(--bg-tertiary); color: white; border: 1px solid var(--border); border-radius: 4px; padding: 8px;">
-                                <option value="operasional">Operasional (60%)</option>
-                                <option value="playing">Eksplorasi (Playing) (25%)</option>
-                                <option value="study">Kapasitas (Saving) (15%)</option>
-                            </select>
-                        </div>
-
+                        <select id="eco-allocation"
+                            style="flex:1; min-width: 150px; background: var(--bg-tertiary); color: white; border: 1px solid var(--border); border-radius: 4px; padding: 8px;">
+                            <option value="operasional">Operasional (60%)</option>
+                            <option value="playing">Eksplorasi (Playing) (25%)</option>
+                            <option value="study">Kapasitas (Saving) (15%)</option>
+                        </select>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row" style="display:flex; flex-wrap:wrap; gap:12px;">
                         <input type="text" id="eco-category" placeholder="Kategori (Makan, Bensin, Gaji)"
-                            style="flex:1;">
+                            style="flex:1; min-width: 200px;">
                     </div>
-                    <div class="form-row">
-                        <input type="text" id="eco-desc" placeholder="Catatan Opsional..." style="flex:2;">
-                        <button class="btn btn-primary" id="add-transaction-btn">Catat</button>
+                    <div class="form-row" style="display:flex; flex-wrap:wrap; gap:12px;">
+                        <input type="text" id="eco-desc" placeholder="Catatan Opsional..." style="flex:2; min-width: 200px;">
+                        <button class="btn btn-primary" id="add-transaction-btn" style="flex: 1; min-width: 100px;">Catat</button>
                     </div>
                 </div>
 
@@ -439,9 +449,9 @@
                 </div>
 
                 <div class="module-panel" style="margin-top:24px;">
-                    <h4 style="display:flex; justify-content:space-between; align-items:center;">
+                    <h4 style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap: 12px;">
                         Histori Transaksi
-                        <div style="display:flex; gap:8px;">
+                        <div style="display:flex; flex-wrap:wrap; gap:8px;">
                             <button class="btn btn-icon" id="download-eco-doc-btn"
                                 style="font-size:0.8rem; padding:4px 8px; border-color:var(--success); color:var(--success);">Unduh Laporan (.doc)</button>
                             <button class="btn btn-icon" id="reset-pockets-btn"

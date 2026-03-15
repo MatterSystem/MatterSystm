@@ -903,129 +903,370 @@ h1, h2, h3, h4, .logo h1, .premium-text {
 }
 
 /* ========== Responsive ========== */
+.mobile-header {
+    display: none;
+}
 @media (max-width: 768px) {
+    /* === Core Layout === */
     .app-container {
         flex-direction: column;
     }
 
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: sticky;
-        top: 0;
-        flex-direction: column;
-        padding: 16px;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        z-index: 1000;
-        box-shadow: var(--shadow-sm);
-    }
-
-    .logo {
-        margin-bottom: 12px;
-    }
-
-    .nav-menu {
+    /* === Mobile Header === */
+    .mobile-header {
         display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        padding-bottom: 0px;
-        gap: 8px;
-        -ms-overflow-style: none;
-        /* IE and Edge */
-        scrollbar-width: none;
-        /* Firefox */
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 16px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--glass-border);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        height: 56px;
     }
 
-    .nav-menu::-webkit-scrollbar {
+    .mobile-header .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .mobile-header .logo-symbol {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+        margin-right: 0;
+    }
+
+    .mobile-header h1 {
+        font-size: 1rem;
+        margin: 0;
+        letter-spacing: 0.06em;
+    }
+
+    .menu-toggle {
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+        transition: background 0.2s;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:active {
+        background: var(--bg-tertiary);
+    }
+
+    /* === Sidebar Overlay === */
+    .sidebar-overlay {
         display: none;
-        /* Safari and Chrome */
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 850;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
     }
 
-    .nav-section {
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    /* === Off-Canvas Sidebar === */
+    .sidebar {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 56px);
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 900;
+        border-right: 1px solid var(--border);
+        padding: 16px;
+        box-shadow: none;
+        background: var(--bg-primary);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+        box-shadow: 16px 0 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .sidebar .logo {
         display: none;
     }
 
-    .nav-item {
-        width: auto;
-        flex: 0 0 auto;
-        padding: 8px 16px;
+    .sidebar .version-badge {
+        display: none;
+    }
+
+    .sidebar .nav-menu {
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .sidebar .nav-item {
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 1rem;
+        border-radius: var(--radius-md);
     }
 
     .sidebar-footer {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 12px;
         padding-top: 12px;
-        margin-top: 12px;
-        border-top: 1px solid var(--border);
     }
 
-    .sidebar-footer .authority-status {
-        margin-bottom: 0;
-        flex: 1;
-        font-size: 0.75rem;
-        padding: 8px;
-    }
-
-    .sidebar-footer .theme-toggle {
-        width: auto;
-        flex: 1;
-        justify-content: center;
-        padding: 8px;
-    }
-
-    .sidebar-footer .date-display {
-        display: none;
-    }
-
+    /* === Main Content Area === */
     .main-content {
         margin-left: 0;
-        padding: 20px 16px;
+        padding: 72px 14px 32px 14px;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* === View Header === */
+    .view-header {
+        margin-bottom: 16px;
     }
 
     .view-header h2 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
+    .view-header .subtitle {
+        font-size: 0.8rem;
+    }
+
+    /* === Module Panels === */
+    .module-panel {
+        padding: 16px;
+        margin-bottom: 16px;
+        border-radius: var(--radius-md);
+    }
+
+    .module-panel h4 {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+
+    /* === Form Rows === */
+    .module-panel .form-row,
+    .form-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .module-panel .form-row > *,
+    .form-row > * {
+        width: 100% !important;
+        min-width: unset !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* === All Inputs, Selects === */
+    .module-panel input,
+    .module-panel select,
+    .module-panel textarea,
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+        font-size: 16px; /* Prevents iOS zoom */
+        padding: 12px 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* === Buttons === */
+    .btn {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-save {
+        padding: 14px;
+        font-size: 0.9rem;
+    }
+
+    /* === Card/Pillar Grid === */
     .pillars-grid,
-    .eco-grid,
+    .habit-binary-grid,
     .pockets-container,
-    .habit-binary-grid {
+    .eco-grid,
+    .charts-visual-grid,
+    .system-menu-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 
+    .pillar-card {
+        padding: 16px;
+    }
+
+    /* === Economy Section === */
     .economy-summary-cards {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .economy-summary-cards .pocket-card {
+        flex: none;
+        width: 100%;
+    }
+
+    .pocket-card {
+        padding: 16px;
+    }
+
+    /* === Analytics Row === */
+    .analytics-row {
         flex-direction: column;
     }
 
-    .module-panel .form-row {
+    .charts-visual-grid {
+        width: 100%;
+    }
+
+    .heatmap-panel {
+        max-width: 100%;
+        flex: none;
+        width: 100%;
+    }
+
+    .habit-bars-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* === History Item === */
+    .history-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px;
+    }
+
+    .history-item .delete-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* === History Controls === */
+    .history-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .history-controls input {
+        width: 100%;
+    }
+
+    .history-controls .btn {
+        width: 100%;
+    }
+
+    /* === Date Selector === */
+    .date-selector-log {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .date-selector-log input,
+    .date-selector-log .btn {
+        width: 100%;
+    }
+
+    /* === Interrogation === */
+    .interrogation-date-select {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .module-panel .form-row>* {
-        width: 100% !important;
-        margin-bottom: 8px;
+    .interrogation-date-select select {
+        width: 100%;
     }
 
-    .module-panel .form-row>*:last-child {
-        margin-bottom: 0;
+    /* === Dashboard Buttons Row === */
+    .three-pillars > div[style] {
+        flex-direction: column !important;
     }
 
-    .success {
-        color: var(--success);
-        font-weight: bold;
+    /* === Part Tabs === */
+    .part-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        gap: 6px;
+        padding-bottom: 4px;
     }
 
-    .danger {
-        color: var(--danger);
-        font-weight: bold;
+    .part-tab {
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 0.75rem;
+        padding: 8px 12px;
     }
-    /* Specific adjustments for inline styles in economy module */
-    #eco-type {
-        margin-top: 8px;
+
+    /* === Toast === */
+    .toast {
+        left: 12px;
+        right: 12px;
+        bottom: 20px;
+        max-width: none;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    /* === Pie Charts === */
+    .pie-container {
+        margin: 0 auto;
+    }
+
+    /* === Roadmap Card === */
+    .roadmap-card {
+        padding: 18px;
+    }
+
+    /* === Transaction History List === */
+    #eco-history-list {
+        max-height: 400px;
+    }
+
+    /* === The big save button === */
+    #save-discipline-btn {
+        font-size: 0.95rem;
+        padding: 16px;
+    }
+
+    /* === Economy input inline styles override === */
+    #eco-total-amount {
+        font-size: 1.1rem !important;
+        padding: 14px !important;
+    }
+
+    #split-income-btn {
+        padding: 14px !important;
+        white-space: nowrap;
     }
 }
 

@@ -619,7 +619,6 @@ function renderDailyHabitPie() {
 
 // ========== History ==========
 function deleteDay(dateStr) {
-    if (!confirm(`Hapus data untuk ${formatDisplayDate(dateStr)}?`)) return;
     delete state.disciplineLog[dateStr];
     saveToStorage(STORAGE_KEYS.disciplineLog, state.disciplineLog);
     renderHistory();
@@ -1643,51 +1642,47 @@ function addTransaction() {
 }
 
 function deleteTransaction(index) {
-    if (confirm('Apakah Anda yakin ingin menghapus transaksi ini?')) {
-        const item = state.economy[index];
-        if (!item) return;
+    const item = state.economy[index];
+    if (!item) return;
 
-        // Revert pocket balance changes
-        if (item.type === 'split' && item.split) {
-            state.pockets.operasional -= item.split.op;
-            state.pockets.eksplorasi -= item.split.ex;
-            state.pockets.kapasitas -= item.split.cap;
-        } else if (item.type === 'income') {
-            state.pockets.operasional -= item.amount;
-        } else if (item.type === 'expense') {
-            const amount = item.amount;
-            const allocation = item.allocation || 'operasional';
-            if (allocation === 'operasional') state.pockets.operasional += amount;
-            if (allocation === 'playing') state.pockets.eksplorasi += amount;
-            if (allocation === 'study') state.pockets.kapasitas += amount;
-        }
+    // Revert pocket balance changes
+    if (item.type === 'split' && item.split) {
+        state.pockets.operasional -= item.split.op;
+        state.pockets.eksplorasi -= item.split.ex;
+        state.pockets.kapasitas -= item.split.cap;
+    } else if (item.type === 'income') {
+        state.pockets.operasional -= item.amount;
+    } else if (item.type === 'expense') {
+        const amount = item.amount;
+        const allocation = item.allocation || 'operasional';
+        if (allocation === 'operasional') state.pockets.operasional += amount;
+        if (allocation === 'playing') state.pockets.eksplorasi += amount;
+        if (allocation === 'study') state.pockets.kapasitas += amount;
+    }
 
-        // Hapus item
-        state.economy.splice(index, 1);
+    // Hapus item
+    state.economy.splice(index, 1);
 
-        // Simpan
-        saveToStorage(STORAGE_KEYS.economy, state.economy);
-        saveToStorage('matter_pockets', state.pockets);
+    // Simpan
+    saveToStorage(STORAGE_KEYS.economy, state.economy);
+    saveToStorage('matter_pockets', state.pockets);
 
-        // Update tampilan
-        renderEconomyDashboard();
+    // Update tampilan
+    renderEconomyDashboard();
 
-        if (typeof showToast === 'function') {
-            showToast('Transaksi berhasil dihapus dan saldo kantong dikoreksi');
-        }
+    if (typeof showToast === 'function') {
+        showToast('Transaksi berhasil dihapus dan saldo kantong dikoreksi');
     }
 }
 
 document.addEventListener('click', e => {
     if (e.target?.id === 'reset-pockets-btn') {
-        if (confirm('Reset semua data finansial? Ini akan menghapus histori transaksi dan saldo kantong.')) {
-            state.pockets = { operasional: 0, eksplorasi: 0, kapasitas: 0 };
-            state.economy = [];
-            saveToStorage('matter_pockets', state.pockets);
-            saveToStorage(STORAGE_KEYS.economy, state.economy);
-            renderEconomyDashboard();
-            showToast('Seluruh data finansial telah di-reset.');
-        }
+        state.pockets = { operasional: 0, eksplorasi: 0, kapasitas: 0 };
+        state.economy = [];
+        saveToStorage('matter_pockets', state.pockets);
+        saveToStorage(STORAGE_KEYS.economy, state.economy);
+        renderEconomyDashboard();
+        showToast('Seluruh data finansial telah di-reset.');
     }
     if (e.target?.id === 'split-income-btn') splitIncome();
     if (e.target?.id === 'download-eco-doc-btn') downloadEconomyDoc();
@@ -1939,7 +1934,6 @@ function addCustomHabit() {
 }
 
 window.deleteCustomHabit = function (id) {
-    if (!confirm('Hapus kebiasaan kustom ini? Data log lama yang menggunakan kebiasaan ini tetap tersimpan.')) return;
     state.customHabits = state.customHabits.filter(h => h.id !== id);
     saveToStorage(STORAGE_KEYS.customHabits, state.customHabits);
     renderDashboard();
@@ -2030,8 +2024,42 @@ function switchView(viewId) {
 
 function initNavigation() {
     document.querySelectorAll('.nav-item').forEach(btn => {
-        btn.addEventListener('click', () => switchView(btn.dataset.view));
+        btn.addEventListener('click', () => {
+            switchView(btn.dataset.view);
+            // Close mobile sidebar upon navigation
+            document.getElementById('sidebar')?.classList.remove('open');
+        });
     });
+
+    // Mobile menu toggle logic
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const overlay = document.getElementById('sidebar-overlay');
+    const sidebar = document.getElementById('sidebar');
+
+    function openSidebar() {
+        sidebar?.classList.add('open');
+        overlay?.classList.add('active');
+    }
+
+    function closeSidebar() {
+        sidebar?.classList.remove('open');
+        overlay?.classList.remove('active');
+    }
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            if (sidebar?.classList.contains('open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+    }
+
+    // Close sidebar when clicking overlay
+    if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+    }
 }
 
 // ========== Theme ==========
