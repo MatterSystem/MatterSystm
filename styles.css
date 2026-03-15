@@ -1237,9 +1237,22 @@ h1, h2, h3, h4, .logo h1, .premium-text {
         font-size: 0.9rem;
     }
 
-    /* === Pie Charts === */
+    /* === Pie Charts & Chart Cards === */
+    .charts-visual-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .chart-card {
+        width: 100%;
+        padding: 16px;
+    }
+
     .pie-container {
-        margin: 0 auto;
+        width: 160px;
+        height: 160px;
+        margin: 12px auto;
     }
 
     /* === Roadmap Card === */
