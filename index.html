@@ -1,482 +1,321 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matter System - Personal Strategic Life Operating System</title>
+    <title>Input Data Karyawan | Premium Portal</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
 </head>
-
 <body>
-    <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="logo">
-                <span class="logo-icon">◇</span>
-                <h1>Matter System</h1>
-                <span class="version-badge">v100</span>
-            </div>
-            <nav class="nav-menu">
-                <div class="nav-section">BAGIAN 1 · v1–v10</div>
-                <button class="nav-item active" data-view="dashboard">
-                    <span class="nav-icon">📊</span>
-                    Dashboard
-                </button>
-                <button class="nav-item" data-view="discipline-log">
-                    <span class="nav-icon">✓</span>
-                    Log Disiplin
-                </button>
-                <button class="nav-item" data-view="interrogation">
-                    <span class="nav-icon">⚡</span>
-                    Ruang Interogasi
-                </button>
-                <button class="nav-item" data-view="charts">
-                    <span class="nav-icon">📈</span>
-                    Grafik
-                </button>
-                <button class="nav-item" data-view="journal">
-                    <span class="nav-icon">📓</span>
-                    Jurnal Harian
-                </button>
-                <button class="nav-item" data-view="history">
-                    <span class="nav-icon">📜</span>
-                    Histori
-                </button>
-                <div class="nav-section">BAGIAN 2 · v11–v20</div>
-                <button class="nav-item" data-view="part2">
-                    <span class="nav-icon">🔬</span>
-                    Analisis Disiplin
-                </button>
-                <div class="nav-section">BAGIAN 3 · v21–v30</div>
-                <button class="nav-item" data-view="part3">
-                    <span class="nav-icon">⚙</span>
-                    Koreksi Struktur
-                </button>
-                <div class="nav-section">BAGIAN 4 · v31–v40</div>
-                <button class="nav-item" data-view="part4">
-                    <span class="nav-icon">📦</span>
-                    Pengembangan Kapasitas
-                </button>
-                <div class="nav-section">BAGIAN 5 · v41–v50</div>
-                <button class="nav-item" data-view="part5">
-                    <span class="nav-icon">🎯</span>
-                    Strategi Kehidupan
-                </button>
-                <div class="nav-section">BAGIAN 6 · v51–v60</div>
-                <button class="nav-item" data-view="part6">
-                    <span class="nav-icon">🔮</span>
-                    Prediksi Masa Depan
-                </button>
-                <div class="nav-section">BAGIAN 7 · v61–v70</div>
-                <button class="nav-item" data-view="part7">
-                    <span class="nav-icon">📖</span>
-                    Ekspansi Kapasitas
-                </button>
-                <div class="nav-section">BAGIAN 8 · v71–v80</div>
-                <button class="nav-item" data-view="part8">
-                    <span class="nav-icon">🏛</span>
-                    Optimalisasi Kehidupan
-                </button>
-                <div class="nav-section">BAGIAN 9 · v81–v90</div>
-                <button class="nav-item" data-view="part9">
-                    <span class="nav-icon">👑</span>
-                    Kepemimpinan Pribadi
-                </button>
-                <div class="nav-section">BAGIAN 10 · v91–v100</div>
-                <button class="nav-item" data-view="part10">
-                    <span class="nav-icon">Ω</span>
-                    Final Omega
-                    <div class="nav-section">ECONOMY</div>
-                    <button class="nav-item" data-view="economy">
-                        <span class="nav-icon">💰</span>
-                        Keuangan
-                    </button>
-            </nav>
-            <div class="sidebar-footer">
-                <div class="authority-status" id="authority-status">—</div>
-                <button class="theme-toggle">
-                    <span class="theme-icon">🌙</span>
-                    <span class="theme-text">Dark Mode</span>
-                </button>
-                <div class="date-display" id="current-date"></div>
-            </div>
-        </aside>
+    <div class="container">
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="input">
+                <i class="fa-solid fa-pen-to-square"></i> Input
+            </button>
+            <button class="tab-btn" data-tab="history">
+                <i class="fa-solid fa-clock-rotate-left"></i> Riwayat
+            </button>
+        </nav>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard -->
-            <section id="view-dashboard" class="view active">
-                <div class="view-header">
-                    <h2>Command Center</h2>
-                    <p class="subtitle">Sistem Dasar Pelacak Disiplin · Matter System v1–v10</p>
+        <div id="inputSection" class="tab-content active">
+            <h1>Data Karyawan</h1>
+            <p class="subtitle">Silakan lengkapi formulir di bawah ini dengan data yang benar.</p>
+            
+            <form id="employeeForm">
+                <div class="photo-upload-container">
+                    <label for="photoInput" class="photo-preview" id="photoPreview">
+                        <i class="fa-solid fa-camera"></i>
+                    </label>
+                    <input type="file" id="photoInput" accept="image/*">
+                    <label for="photoInput" class="custom-file-upload">
+                        <i class="fa-solid fa-upload"></i> Unggah Foto
+                    </label>
+                    <p class="subtitle" style="margin-bottom: 0;">Ambil dari galeri atau kamera</p>
                 </div>
-                <div class="authority-badge-container" id="authority-badge"></div>
-                <div class="three-pillars">
-                    <h3>Hukum Biner (Kebiasaan Eksekusi Material)</h3>
-                    <div class="pillars-grid" id="habit-binary-grid">
-                        <div class="pillar-card">
-                            <div class="pillar-header">
-                                <span class="pillar-icon">🌅</span>
-                                <h4>Wake Up 04:00 AM</h4>
-                            </div>
-                            <p class="pillar-desc">Bangun pagi untuk keunggulan waktu</p>
-                            <div class="pillar-toggle">
-                                <button type="button" class="toggle-btn active" data-pillar="wakeup"
-                                    data-value="no">Tidak</button>
-                                <button type="button" class="toggle-btn" data-pillar="wakeup"
-                                    data-value="yes">Ya</button>
-                            </div>
+
+                <!-- SECTION 1: DATA PRIBADI DAN IDENTITAS -->
+                <details class="form-section" open>
+                    <summary>1. Data Pribadi dan Identitas (Master Data)</summary>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label for="fullName">Nama Lengkap Sesuai KTP <span class="required">(Wajib)</span></label>
+                            <input type="text" id="fullName" placeholder="Contoh: Budi Santoso" required>
                         </div>
-                        <div class="pillar-card">
-                            <div class="pillar-header">
-                                <span class="pillar-icon">📚</span>
-                                <h4>Cognitive Intake (Book)</h4>
-                            </div>
-                            <p class="pillar-desc">Membaca literatur berat</p>
-                            <div class="pillar-toggle">
-                                <button type="button" class="toggle-btn active" data-pillar="cognitiveRead"
-                                    data-value="no">Tidak</button>
-                                <button type="button" class="toggle-btn" data-pillar="cognitiveRead"
-                                    data-value="yes">Ya</button>
-                            </div>
-                            <!-- Optional pages input directly below if they select yes, but default is just the toggle -->
-                            <div class="pillar-input" style="margin-top: 10px;">
-                                <input type="number" id="cognitive-pages" min="0" placeholder="Hal" value=""
-                                    style="width:100%; font-size: 0.8rem;">
-                            </div>
+                        <div class="form-group">
+                            <label for="nickname">Nama Panggilan <span class="optional">(Opsional)</span></label>
+                            <input type="text" id="nickname" placeholder="Contoh: Budi">
                         </div>
-                        <div class="pillar-card">
-                            <div class="pillar-header">
-                                <span class="pillar-icon">💪</span>
-                                <h4>Physical</h4>
-                            </div>
-                            <p class="pillar-desc">Latihan fisik intens</p>
-                            <div class="pillar-toggle">
-                                <button type="button" class="toggle-btn active" data-pillar="boxing"
-                                    data-value="no">Tidak</button>
-                                <button type="button" class="toggle-btn" data-pillar="boxing"
-                                    data-value="yes">Ya</button>
-                            </div>
+                        <div class="form-group">
+                            <label for="nik">Nomor Induk Karyawan <span class="optional">(Opsional)</span></label>
+                            <input type="text" id="nik" placeholder="Contoh: EMP-2026-001">
                         </div>
-                        <div class="pillar-card">
-                            <div class="pillar-header">
-                                <span class="pillar-icon">🧠</span>
-                                <h4>Intellectual Execution</h4>
-                            </div>
-                            <p class="pillar-desc">Belajar struktural</p>
-                            <div class="pillar-toggle">
-                                <button type="button" class="toggle-btn active" data-pillar="intellectual"
-                                    data-value="no">Tidak</button>
-                                <button type="button" class="toggle-btn" data-pillar="intellectual"
-                                    data-value="yes">Ya</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary btn-save" id="save-discipline-btn">Simpan Log Hari Ini
-                        (1-Click)</button>
-                </div>
-                <div class="today-status" id="today-status-card"></div>
-            </section>
-
-            <!-- Log Disiplin (quick view) -->
-            <section id="view-discipline-log" class="view">
-                <div class="view-header">
-                    <h2>Log Disiplin</h2>
-                    <p class="subtitle">Input dan evaluasi harian</p>
-                </div>
-                <div class="date-selector-log">
-                    <label>Tanggal:</label>
-                    <input type="date" id="log-date" />
-                    <button class="btn btn-icon" id="load-log-btn">Muat</button>
-                </div>
-                <div id="discipline-log-content"></div>
-            </section>
-
-            <!-- Ruang Interogasi -->
-            <section id="view-interrogation" class="view">
-                <div class="view-header">
-                    <h2>Ruang Interogasi</h2>
-                    <p class="subtitle">Wajib diisi saat status hari Gagal · Tidak ada kolom alasan bebas</p>
-                </div>
-                <div class="interrogation-date-select" id="interrogation-date-select"></div>
-                <div class="interrogation-form" id="interrogation-form">
-                    <div class="interrogation-section">
-                        <h4>Sebab Eksternal (pilih satu)</h4>
-                        <div class="interrogation-options">
-                            <label class="interrogation-option"><input type="radio" name="cause" value="distraksi">
-                                Distraksi lingkungan</label>
-                            <label class="interrogation-option"><input type="radio" name="cause" value="manajemen">
-                                Manajemen waktu buruk</label>
-                            <label class="interrogation-option"><input type="radio" name="cause" value="gangguan">
-                                Gangguan sosial</label>
-                            <label class="interrogation-option"><input type="radio" name="cause" value="kelelahan">
-                                Kelelahan fisik</label>
-                        </div>
-                    </div>
-                    <div class="interrogation-section">
-                        <h4>Solusi Struktural (pilih satu)</h4>
-                        <div class="interrogation-options">
-                            <label class="interrogation-option"><input type="radio" name="solution" value="lokasi"> Ubah
-                                lokasi belajar</label>
-                            <label class="interrogation-option"><input type="radio" name="solution" value="notifikasi">
-                                Matikan notifikasi</label>
-                            <label class="interrogation-option"><input type="radio" name="solution" value="jadwal">
-                                Perbaiki jadwal</label>
-                            <label class="interrogation-option"><input type="radio" name="solution" value="tidur">
-                                Disiplin tidur</label>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" id="save-interrogation-btn">Simpan Analisis</button>
-                </div>
-                <div class="interrogation-result" id="interrogation-result"></div>
-            </section>
-
-            <!-- Grafik -->
-            <section id="view-charts" class="view">
-                <div class="view-header">
-                    <h2>Grafik Disiplin</h2>
-                    <p class="subtitle">Visualisasi performa disiplin</p>
-                </div>
-                <div class="chart-section">
-                    <h4>Grafik Harian (7 hari terakhir)</h4>
-                    <div class="chart-bar-container" id="chart-daily"></div>
-                </div>
-                <div class="chart-section">
-                    <h4>Grafik Mingguan (4 minggu terakhir)</h4>
-                    <div class="chart-bar-container" id="chart-weekly"></div>
-                </div>
-            </section>
-
-            <!-- Histori -->
-            <section id="view-history" class="view">
-                <div class="view-header">
-                    <h2>Histori Disiplin</h2>
-                    <p class="subtitle">Riwayat lengkap dengan opsi hapus per hari</p>
-                </div>
-                <div class="history-controls">
-                    <input type="date" id="history-filter-date" />
-                    <button class="btn btn-icon" id="filter-history-btn">Filter</button>
-                    <button class="btn btn-icon" id="clear-history-filter">Reset</button>
-                </div>
-                <div id="history-list"></div>
-            </section>
-
-            <!-- Jurnal -->
-            <section id="view-journal" class="view">
-                <div class="view-header">
-                    <h2>Jurnal Dialektis (Node 3)</h2>
-                    <p class="subtitle">Sintesis Eksekusi — Refleksi Diri Berbasis Data Aktual</p>
-                </div>
-                <div class="journal-prompt-container" id="journal-prompt-container">
-                    <p class="empty-state">Isi log habit dan alokasi keuangan hari ini untuk melihat prompt jurnal.</p>
-                </div>
-                <div class="journal-history" id="journal-history-list" style="margin-top: 32px;"></div>
-            </section>
-
-            <!-- PART 2 · v11–v20 Analisis Disiplin -->
-            <section id="view-part2" class="view">
-                <div class="view-header">
-                    <h2>Bagian 2 · Sistem Analisis Disiplin (v11–v20)</h2>
-                    <p class="subtitle">Behavioral Energy, Habit Builder, Arsenal, Focus Lock, Authority Level</p>
-                </div>
-                <div class="part-tabs" id="part2-tabs"></div>
-                <div class="part-content" id="part2-content"></div>
-            </section>
-
-            <!-- PART 3 · v21–v30 Koreksi Struktur -->
-            <section id="view-part3" class="view">
-                <div class="view-header">
-                    <h2>Bagian 3 · Sistem Koreksi Struktur (v21–v30)</h2>
-                    <p class="subtitle">Habit Failure Detector, War Room, Decision Logger, Achievement, Life Campaign
-                    </p>
-                </div>
-                <div class="part-tabs" id="part3-tabs"></div>
-                <div class="part-content" id="part3-content"></div>
-            </section>
-
-            <!-- PART 4 · v31–v40 Pengembangan Kapasitas -->
-            <section id="view-part4" class="view">
-                <div class="view-header">
-                    <h2>Bagian 4 · Sistem Pengembangan Kapasitas (v31–v40)</h2>
-                    <p class="subtitle">Skill Conquest, Routine Generator, Risk Analyzer, Immutable Log, Doctrine</p>
-                </div>
-                <div class="part-tabs" id="part4-tabs"></div>
-                <div class="part-content" id="part4-content"></div>
-            </section>
-
-            <!-- PART 5 · v41–v50 Strategi Kehidupan -->
-            <section id="view-part5" class="view">
-                <div class="view-header">
-                    <h2>Bagian 5 · Sistem Strategi Kehidupan (v41–v50)</h2>
-                    <p class="subtitle">Vision Engine, AI Assistant, Power Index, Life Control, Matter Omega</p>
-                </div>
-                <div class="part-tabs" id="part5-tabs"></div>
-                <div class="part-content" id="part5-content"></div>
-            </section>
-
-            <!-- PART 6 · v51–v60 Prediksi Masa Depan -->
-            <section id="view-part6" class="view">
-                <div class="view-header">
-                    <h2>Bagian 6 · Sistem Prediksi Masa Depan (v51–v60)</h2>
-                    <p class="subtitle">Future Behavior Predictor, Life Trajectory, Momentum Engine, Discipline Forecast
-                    </p>
-                </div>
-                <div class="part-tabs" id="part6-tabs"></div>
-                <div class="part-content" id="part6-content"></div>
-            </section>
-
-            <!-- PART 7 · v61–v70 Ekspansi Kapasitas Manusia -->
-            <section id="view-part7" class="view">
-                <div class="view-header">
-                    <h2>Bagian 7 · Sistem Ekspansi Kapasitas Manusia (v61–v70)</h2>
-                    <p class="subtitle">Cognitive Expansion, Learning Engine, Deep Work, Intellectual Dominance</p>
-                </div>
-                <div class="part-tabs" id="part7-tabs"></div>
-                <div class="part-content" id="part7-content"></div>
-            </section>
-
-            <!-- PART 8 · v71–v80 Optimalisasi Kehidupan -->
-            <section id="view-part8" class="view">
-                <div class="view-header">
-                    <h2>Bagian 8 · Sistem Optimalisasi Kehidupan (v71–v80)</h2>
-                    <p class="subtitle">Life Architecture, Resource Manager, Goal Conquest, Life Performance Index</p>
-                </div>
-                <div class="part-tabs" id="part8-tabs"></div>
-                <div class="part-content" id="part8-content"></div>
-            </section>
-
-            <!-- PART 9 · v81–v90 Kepemimpinan Pribadi -->
-            <section id="view-part9" class="view">
-                <div class="view-header">
-                    <h2>Bagian 9 · Sistem Kepemimpinan Pribadi (v81–v90)</h2>
-                    <p class="subtitle">Leadership Engine, Strategic Communication, Elite Leadership Dashboard</p>
-                </div>
-                <div class="part-tabs" id="part9-tabs"></div>
-                <div class="part-content" id="part9-content"></div>
-            </section>
-
-            <!-- PART 10 · v91–v100 Final Omega -->
-            <section id="view-part10" class="view">
-                <div class="view-header">
-                    <h2>Bagian 10 · Matter System Final Omega v100</h2>
-                    <p class="subtitle">Personal Strategic Life Operating System · Integrasi Penuh Semua Modul</p>
-                </div>
-                <div class="part-tabs" id="part10-tabs"></div>
-                <div class="part-content" id="part10-content"></div>
-            </section>
-            <!-- Economy -->
-            <section id="view-economy" class="view">
-                <div class="view-header">
-                    <h2>Sistem Finansial Kausalitas (Node 2)</h2>
-                    <p class="subtitle">Otomatisasi 60-25-15</p>
-                </div>
-
-                <!-- Total Balance Output for legacy user request -->
-                <div class="economy-summary-cards" style="display:flex; gap:12px; margin-bottom:24px;">
-                    <div class="pocket-card" style="flex:1;">
-                        <h4 style="font-size:0.85rem; color:var(--text-muted);">Total Balance</h4>
-                        <div class="pocket-amount" id="economy-total-balance">Rp 0</div>
-                    </div>
-                    <div class="pocket-card" style="flex:1;">
-                        <h4 style="font-size:0.85rem; color:var(--text-muted);">Total In / Out</h4>
-                        <div style="font-size:0.9rem; margin-top:4px;">
-                            <span style="color:var(--success)" id="economy-total-income">Rp 0</span> /
-                            <span style="color:var(--danger)" id="economy-total-expense">Rp 0</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-panel" style="margin-bottom: 24px;">
-                    <h4>Input Sintesis (Auto-Split 60-25-15)</h4>
-                    <p class="subtitle" style="margin-bottom:12px">Beban kognitif nol. Biarkan algoritma menghitung.</p>
-                    <div class="form-row">
-                        <input type="number" id="eco-total-amount" placeholder="Total Pemasukan (Rp)"
-                            style="flex:1; font-size: 1.2rem; padding: 12px;">
-                        <button class="btn btn-primary" id="split-income-btn"
-                            style="padding: 12px 24px;">Alokasikan</button>
-                    </div>
-                </div>
-
-                <div class="pockets-container" id="pockets-display">
-                    <div class="pocket-card">
-                        <h4>Operasional <span style="font-size: 0.8rem; opacity:0.7">(60%)</span></h4>
-                        <div class="pocket-amount" id="pocket-op-amount">Rp 0</div>
-                        <div class="pocket-bar-track">
-                            <div class="pocket-bar-fill" id="pocket-op-bar"
-                                style="width: 0%; background: var(--success);"></div>
-                        </div>
-                    </div>
-                    <div class="pocket-card">
-                        <h4>Eksplorasi (Playing) <span style="font-size: 0.8rem; opacity:0.7">(25%)</span></h4>
-                        <div class="pocket-amount" id="pocket-ex-amount">Rp 0</div>
-                        <div class="pocket-bar-track">
-                            <div class="pocket-bar-fill" id="pocket-ex-bar"
-                                style="width: 0%; background: var(--warning);"></div>
-                        </div>
-                    </div>
-                    <div class="pocket-card">
-                        <h4>Kapasitas (Saving) <span style="font-size: 0.8rem; opacity:0.7">(15%)</span></h4>
-                        <div class="pocket-amount" id="pocket-cap-amount">Rp 0</div>
-                        <div class="pocket-bar-track">
-                            <div class="pocket-bar-fill" id="pocket-cap-bar"
-                                style="width: 0%; background: var(--accent);"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="module-panel" style="margin-top:24px;">
-                    <h4>Input Transaksi Manual</h4>
-                    <div class="form-row" style="margin-top:12px">
-                        <input type="number" id="eco-amount" placeholder="Nominal (Rp)" style="flex:1;">
-                        <select id="eco-type" style="width:120px;">
-                            <option value="income">Masuk (+)</option>
-                            <option value="expense">Keluar (-)</option>
-                        </select>
                         <div class="form-row">
-                            <select id="eco-allocation"
-                                style="flex:1; background: var(--bg-tertiary); color: white; border: 1px solid var(--border); border-radius: 4px; padding: 8px;">
-                                <option value="operasional">⚙️ Operasional (Kebutuhan)</option>
-                                <option value="playing">🎮 Playing (Hiburan)</option>
-                                <option value="study">📚 Study (Belajar/Skill)</option>
+                            <div class="form-group half">
+                                <label for="ktp">Nomor KTP <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="ktp" placeholder="16 digit NIK KTP">
+                            </div>
+                            <div class="form-group half">
+                                <label for="kk">Nomor KK <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="kk" placeholder="16 digit No KK">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="npwp">NPWP <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="npwp" placeholder="Nomor Pokok Wajib Pajak">
+                            </div>
+                            <div class="form-group half">
+                                <label for="bpjs">BPJS (Kesehatan/TK) <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="bpjs" placeholder="Nomor BPJS">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Alamat Rumah Lengkap <span class="required">(Wajib)</span></label>
+                            <textarea id="address" rows="3" placeholder="Jl. Merdeka No. 123, Jakarta" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="phone">Nomor Telepon Pribadi <span class="required">(Wajib)</span></label>
+                                <input type="tel" id="phone" placeholder="0812-xxxx-xxxx" required>
+                            </div>
+                            <div class="form-group half">
+                                <label for="email">Email Pribadi <span class="required">(Wajib)</span></label>
+                                <input type="email" id="email" placeholder="budi@email.com" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="dob">Tanggal Lahir <span class="optional">(Opsional)</span></label>
+                                <input type="date" id="dob">
+                            </div>
+                            <div class="form-group half">
+                                <label for="gender">Jenis Kelamin <span class="optional">(Opsional)</span></label>
+                                <select id="gender" class="form-select">
+                                    <option value="">Pilih...</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="maritalStatus">Status Pernikahan <span class="optional">(Opsional)</span></label>
+                                <select id="maritalStatus" class="form-select">
+                                    <option value="">Pilih...</option>
+                                    <option value="Belum Menikah">Belum Menikah</option>
+                                    <option value="Menikah">Menikah</option>
+                                    <option value="Cerai">Cerai</option>
+                                </select>
+                            </div>
+                            <div class="form-group half">
+                                <label for="nationality">Kewarganegaraan <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="nationality" placeholder="WNI/WNA">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Informasi Darurat <span class="optional">(Opsional)</span></label>
+                            <div class="form-row">
+                                <input type="text" id="emergencyName" placeholder="Nama Kontak" class="half">
+                                <input type="text" id="emergencyRel" placeholder="Hubungan" class="half">
+                                <input type="tel" id="emergencyPhone" placeholder="No. Telepon" class="half">
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- SECTION 2: DATA PEKERJAAN DAN KONTRAK -->
+                <details class="form-section">
+                    <summary>2. Data Pekerjaan dan Kontrak</summary>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label for="position">Jabatan <span class="required">(Wajib)</span></label>
+                            <input type="text" id="position" placeholder="Contoh: Software Engineer" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="department">Divisi / Departemen <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="department" placeholder="Contoh: IT">
+                            </div>
+                            <div class="form-group half">
+                                <label for="costCenter">Pusat Biaya <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="costCenter" placeholder="Kode Cost Center">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="employmentStatus">Status Kepegawaian <span class="optional">(Opsional)</span></label>
+                            <select id="employmentStatus" class="form-select">
+                                <option value="">Pilih Status...</option>
+                                <option value="Tetap">Karyawan Tetap</option>
+                                <option value="Kontrak">Kontrak (PKWT)</option>
+                                <option value="Paruh Waktu">Paruh Waktu</option>
+                                <option value="Internship">Internship / Magang</option>
                             </select>
                         </div>
-
+                        <div class="form-row">
+                            <div class="form-group third">
+                                <label for="hireDate">Mulai Kerja <span class="optional">(Opsional)</span></label>
+                                <input type="date" id="hireDate">
+                            </div>
+                            <div class="form-group third">
+                                <label for="permanentDate">Tgl Permanen <span class="optional">(Opsional)</span></label>
+                                <input type="date" id="permanentDate">
+                            </div>
+                            <div class="form-group third">
+                                <label for="contractEnd">Akhir Kontrak <span class="optional">(Opsional)</span></label>
+                                <input type="date" id="contractEnd">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="supervisor">Nama Atasan <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="supervisor" placeholder="Nama Atasan">
+                            </div>
+                            <div class="form-group half">
+                                <label for="workLocation">Lokasi Kerja <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="workLocation" placeholder="Contoh: HO Jakarta">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-row">
-                        <input type="text" id="eco-category" placeholder="Kategori (Makan, Bensin, Gaji)"
-                            style="flex:1;">
-                    </div>
-                    <div class="form-row">
-                        <input type="text" id="eco-desc" placeholder="Catatan Opsional..." style="flex:2;">
-                        <button class="btn btn-primary" id="add-transaction-btn">Catat</button>
-                    </div>
-                </div>
+                </details>
 
-                <div class="module-panel" style="margin-top:24px;">
-                    <h4>Arus Kas Mingguan (Manual)</h4>
-                    <div class="chart-container" id="eco-chart"></div>
-                </div>
+                <!-- SECTION 3: DATA PENGGAJIAN DAN TUNJANGAN -->
+                <details class="form-section">
+                    <summary>3. Data Penggajian dan Tunjangan</summary>
+                    <div class="section-content">
+                        <div class="form-row">
+                            <div class="form-group third">
+                                <label for="baseSalary">Gaji Pokok <span class="optional">(Opsional)</span></label>
+                                <input type="number" id="baseSalary" placeholder="Rp.">
+                            </div>
+                            <div class="form-group third">
+                                <label for="positionAllowance">Tunjangan Jabatan <span class="optional">(Opsional)</span></label>
+                                <input type="number" id="positionAllowance" placeholder="Rp.">
+                            </div>
+                            <div class="form-group third">
+                                <label for="mealAllowance">Uang Makan <span class="optional">(Opsional)</span></label>
+                                <input type="number" id="mealAllowance" placeholder="Rp.">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="bankName">Nama Bank <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="bankName" placeholder="Contoh: BCA">
+                            </div>
+                            <div class="form-group half">
+                                <label for="bankAccount">Nomor Rekening <span class="optional">(Opsional)</span></label>
+                                <input type="text" id="bankAccount" placeholder="Nomor Rekening">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Potongan & Lembur <span class="optional">(Opsional)</span></label>
+                            <div class="form-row">
+                                <input type="number" id="taxDeduction" placeholder="Potongan PPh 21 (Rp)" class="third">
+                                <input type="number" id="bpjsDeduction" placeholder="Potongan BPJS (Rp)" class="third">
+                                <input type="number" id="loanDeduction" placeholder="Pinjaman (Rp)" class="third">
+                            </div>
+                        </div>
+                    </div>
+                </details>
 
-                <div class="module-panel" style="margin-top:24px;">
-                    <h4 style="display:flex; justify-content:space-between; align-items:center;">
-                        Histori Transaksi Node 2
-                        <button class="btn btn-icon" id="reset-pockets-btn"
-                            style="font-size:0.8rem; padding:4px 8px;">Reset Kantong</button>
-                    </h4>
-                    <div id="eco-history-list" style="max-height: 300px; overflow-y:auto; margin-top:12px;"></div>
+                <!-- SECTION 4: DATA KEHADIRAN -->
+                <details class="form-section">
+                    <summary>4. Data Kehadiran dan Manajemen Waktu</summary>
+                    <div class="section-content">
+                        <div class="form-row">
+                            <div class="form-group quart">
+                                <label for="leaveBalance">Sisa Cuti <span class="optional">(Opsional)</span></label>
+                                <input type="number" id="leaveBalance" placeholder="Hari">
+                            </div>
+                            <div class="form-group quart">
+                                <label for="sickLeave">Cuti Sakit <span class="optional">(Opsional)</span></label>
+                                <input type="number" id="sickLeave" placeholder="Hari">
+                            </div>
+                            <div class="form-group quart">
+                                <label for="unpaidLeave">Izin <span class="optional">(Opsional)</span></label>
+                                <input type="number" id="unpaidLeave" placeholder="Hari">
+                            </div>
+                            <div class="form-group quart">
+                                <label for="maternityLeave">Cuti Hamil <span class="optional">(Opsional)</span></label>
+                                <input type="number" id="maternityLeave" placeholder="Hari">
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- SECTION 5: DATA KINERJA & PENGEMBANGAN -->
+                <details class="form-section">
+                    <summary>5. Data Kinerja dan Pengembangan (SDM)</summary>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label for="kpiScore">Hasil KPI / Nilai Evaluasi <span class="optional">(Opsional)</span></label>
+                            <input type="number" id="kpiScore" placeholder="0-100">
+                        </div>
+                        <div class="form-group">
+                            <label for="careerHistory">Riwayat Karier <span class="optional">(Opsional)</span></label>
+                            <textarea id="careerHistory" rows="2" placeholder="Catatan promosi atau mutasi"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="trainingHistory">Pelatihan / Sertifikasi <span class="optional">(Opsional)</span></label>
+                            <textarea id="trainingHistory" rows="2" placeholder="Riwayat edukasi dan sertifikat"></textarea>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- SECTION 6: DATA ADMINISTRASI & HUKUM -->
+                <details class="form-section">
+                    <summary>6. Data Administrasi dan Dokumen Hukum</summary>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label for="disciplinaryRecords">Catatan Disipliner <span class="optional">(Opsional)</span></label>
+                            <textarea id="disciplinaryRecords" rows="2" placeholder="Surat Peringatan atau Penghargaan"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Unggah Dokumen <span class="optional">(Opsional)</span></label>
+                            <input type="file" id="documentUploads" multiple accept=".pdf,.png,.jpg,.jpeg">
+                            <p class="subtitle" style="text-align: left; margin-top: 5px; font-size: 0.8rem;">Bisa berupa KTP, KK, Ijazah, CV, atau Kontrak (PDF/Image)</p>
+                        </div>
+                    </div>
+                </details>
+
+                <button type="submit" id="submitBtn">
+                    Simpan Data Karyawan <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+
+        <div id="historySection" class="tab-content">
+            <h1>Riwayat Data</h1>
+            <p class="subtitle">Daftar karyawan yang telah tersimpan di sistem.</p>
+            
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Cari nama atau jabatan...">
+            </div>
+
+            <div id="historyList" class="history-list">
+                <!-- Data will be loaded here -->
+                <div class="empty-state">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <p>Belum ada data tersimpan.</p>
                 </div>
-            </section>
-        </main>
+            </div>
+        </div>
     </div>
 
-    <div id="toast" class="toast"></div>
+    <div id="toast" class="toast">Data berhasil disimpan!</div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
     <script src="app.js"></script>
 </body>
-
 </html>
