@@ -1702,7 +1702,7 @@ function downloadEconomyDoc() {
             <style>
                 body { font-family: 'Times New Roman', serif; }
                 table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                th, justify, td { border: 1px solid black; padding: 8px; text-align: left; }
+                th, td { border: 1px solid black; padding: 8px; text-align: left; }
                 th { background-color: #f2f2f2; }
                 h1, h2 { text-align: center; }
             </style>
@@ -1714,27 +1714,27 @@ function downloadEconomyDoc() {
             <h2>Ringkasan Saldo Kantong</h2>
             <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%; border: 1px solid black;">
                 <tr>
-                    <th>Operasional (60%)</th>
-                    <th>Eksplorasi / Playing (25%)</th>
-                    <th>Kapasitas / Saving (15%)</th>
-                    <th>Total Balance</th>
+                    <th style="border: 1px solid black; padding: 8px;">Operasional (60%)</th>
+                    <th style="border: 1px solid black; padding: 8px;">Eksplorasi / Playing (25%)</th>
+                    <th style="border: 1px solid black; padding: 8px;">Kapasitas / Saving (15%)</th>
+                    <th style="border: 1px solid black; padding: 8px;">Total Balance</th>
                 </tr>
                 <tr>
-                    <td>${formatRupiah(state.pockets.operasional)}</td>
-                    <td>${formatRupiah(state.pockets.eksplorasi)}</td>
-                    <td>${formatRupiah(state.pockets.kapasitas)}</td>
-                    <td><strong>${formatRupiah(state.pockets.operasional + state.pockets.eksplorasi + state.pockets.kapasitas)}</strong></td>
+                    <td style="border: 1px solid black; padding: 8px;">${formatRupiah(state.pockets.operasional)}</td>
+                    <td style="border: 1px solid black; padding: 8px;">${formatRupiah(state.pockets.eksplorasi)}</td>
+                    <td style="border: 1px solid black; padding: 8px;">${formatRupiah(state.pockets.kapasitas)}</td>
+                    <td style="border: 1px solid black; padding: 8px;"><strong>${formatRupiah(state.pockets.operasional + state.pockets.eksplorasi + state.pockets.kapasitas)}</strong></td>
                 </tr>
             </table>
 
             <h2>Riwayat Transaksi</h2>
             <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%; border: 1px solid black;">
                 <tr>
-                    <th>Tanggal</th>
-                    <th>Tipe</th>
-                    <th>Kategori / Catatan</th>
-                    <th>Alokasi</th>
-                    <th>Nominal</th>
+                    <th style="border: 1px solid black; padding: 8px;">Tanggal</th>
+                    <th style="border: 1px solid black; padding: 8px;">Tipe</th>
+                    <th style="border: 1px solid black; padding: 8px;">Kategori / Catatan</th>
+                    <th style="border: 1px solid black; padding: 8px;">Alokasi</th>
+                    <th style="border: 1px solid black; padding: 8px;">Nominal</th>
                 </tr>
     `;
 
@@ -1748,11 +1748,11 @@ function downloadEconomyDoc() {
 
         htmlContent += `
             <tr>
-                <td>${formatDisplayDate(item.date)}</td>
-                <td style="color: ${isIncome ? 'green' : 'red'};">${isIncome ? 'MASUK' : 'KELUAR'} (${typeText})</td>
-                <td>${escapeHtml(desc)}</td>
-                <td>${escapeHtml(allocation)}</td>
-                <td style="color: ${isIncome ? 'green' : 'red'};">${isIncome ? '+' : '-'}${formatRupiah(amount)}</td>
+                <td style="border: 1px solid black; padding: 8px;">${formatDisplayDate(item.date)}</td>
+                <td style="border: 1px solid black; padding: 8px; color: ${isIncome ? 'green' : 'red'};">${isIncome ? 'MASUK' : 'KELUAR'} (${typeText})</td>
+                <td style="border: 1px solid black; padding: 8px;">${escapeHtml(desc)}</td>
+                <td style="border: 1px solid black; padding: 8px;">${escapeHtml(allocation)}</td>
+                <td style="border: 1px solid black; padding: 8px; color: ${isIncome ? 'green' : 'red'};">${isIncome ? '+' : '-'}${formatRupiah(amount)}</td>
             </tr>
         `;
     });
